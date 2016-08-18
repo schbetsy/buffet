@@ -62,7 +62,10 @@ fi
 
 # ENVIRONMENT VARIABLES =======================================================
 
-# set vim as the default editor
+# CFPB paths (from github.com/cfpb/dotfiles `.exports`)
+export PATH="$PATH:$HOME/homebrew/bin:$HOME/homebrew/share/python:$HOME/homebrew/share/npm/bin"
+
+# set the default editor to Vim
 export EDITOR=vim
 export VISUAL=vim
 
