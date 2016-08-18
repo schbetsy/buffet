@@ -75,7 +75,7 @@ fi
 # ENVIRONMENT VARIABLES =======================================================
 
 # CFPB paths (from github.com/cfpb/dotfiles `.exports`)
-export PATH="$PATH:$HOME/homebrew/bin:$HOME/homebrew/share/npm/bin"
+export PATH="$HOME/homebrew/bin:$PATH:$HOME/homebrew/share/npm/bin"
 
 # set the default editor to Vim
 export EDITOR=vim
