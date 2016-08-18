@@ -72,6 +72,9 @@ export PG_DATA_DIR='/usr/local/var/postgres'
 # ignore common large directories in grep
 export GREP_OPTIONS='--exclude-dir=.svn --exclude-dir=.git --exclude-dir=tmp'
 
+# if docker-machine has started, export its variables
+eval $(docker-machine env)
+
 # ALIASES =====================================================================
 
 # upwards directory navigation
@@ -87,6 +90,11 @@ alias v='vim'
 alias g='git'
 alias gr='grunt'
 alias r='rake'
+
+# Docker Toolbox aliases
+alias dk="docker"
+alias dcom="docker-compose"
+alias dm="docker-machine"
 
 # override common tools with useful arguments
 alias grep='grep --color'
