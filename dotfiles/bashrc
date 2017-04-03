@@ -65,12 +65,18 @@ fi
 # CFPB paths (from github.com/cfpb/dotfiles `.exports`)
 export PATH="$HOME/homebrew/bin:$PATH:$HOME/homebrew/share/npm/bin"
 
+# Set up hmda-platform's connection to postgres
+export JDBC_URL="jdbc:postgresql://localhost/hmda?user=postgres&password=postgres"
+
 # set the default editor to Vim
 export EDITOR=vim
 export VISUAL=vim
 
 # not used by any program, but nice to reference
-export PG_DATA_DIR='$HOME/homebrew/var/postgres'
+export PG_DATA_DIR="$HOME/homebrew/var/postgres"
+
+# ... postgres says it wants this?
+export PGDATA="$HOME/homebrew/var/postgres"
 
 # ignore common large directories in grep
 export GREP_OPTIONS='--exclude-dir=.svn --exclude-dir=.git --exclude-dir=tmp'
