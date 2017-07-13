@@ -171,6 +171,9 @@ alias vundle='vim +PluginInstall! +qall'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias read_env='export $(grep -v "^#" .env | xargs -0)'
 
+# help for common sbt commands
+alias sbclean='sbt clean compile test:compile'
+
 # AUTO-COMPLETION =============================================================
 source_if_exists "$BUFFET_DIRECTORY/bin/brew-auto-complete"
 source_if_exists "$BUFFET_DIRECTORY/bin/npm-auto-complete"
