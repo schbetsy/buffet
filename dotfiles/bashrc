@@ -77,8 +77,12 @@ fi
 # CFPB paths (from github.com/cfpb/dotfiles `.exports`)
 export PATH="$HOME/homebrew/bin:$PATH:$HOME/homebrew/share/npm/bin"
 
-# Set up hmda-platform's connection to postgres
+# Set up hmda-platform's connection to postgres, cassandra, and zookeeper
 export JDBC_URL="jdbc:postgresql://localhost/hmda?user=postgres&password=postgres"
+export CASSANDRA_CLUSTER_HOSTS=192.168.99.100
+export CASSANDRA_CLUSTER_PORT=9042
+export ZOOKEEPER_HOST=192.168.99.100
+export ZOOKEEPER_PORT=2181
 
 # set the default editor to Vim
 export EDITOR=vim
