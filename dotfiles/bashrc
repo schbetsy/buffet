@@ -100,6 +100,9 @@ export GREP_OPTIONS='--exclude-dir=.svn --exclude-dir=.git --exclude-dir=tmp'
 # set colors for LS; make directory names easier to read
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
+# don't save duplicates in bash history
+export HISTCONTROL=ignoredups:erasedups
+
 # if docker-machine has started, export its variables
 eval $(docker-machine env)
 
