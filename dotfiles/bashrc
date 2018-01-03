@@ -122,6 +122,7 @@ alias v='vim'
 alias g='git'
 alias gr='grunt'
 alias r='rake'
+alias env='env | sort'
 
 # Docker Toolbox aliases
 alias dk="docker"
