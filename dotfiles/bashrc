@@ -94,7 +94,10 @@ export HISTCONTROL=ignoredups:erasedups
 eval $(docker-machine env)
 
 
+# CF.gov project settings =========
 
+# activate autoenv on startup, for managing environment vars
+source "$HOME/homebrew/opt/autoenv/activate.sh"
 
 
 
