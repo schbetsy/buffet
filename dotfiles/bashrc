@@ -93,30 +93,15 @@ export HISTCONTROL=ignoredups:erasedups
 # if docker-machine has started, export its variables
 eval $(docker-machine env)
 
-# Postgres =======
-# commenting out because I'm not even trying to run postgres locally anymore
 
-# not used by any program, but nice to reference
-# export PG_DATA_DIR="$HOME/homebrew/var/postgres"
 
-# ... postgres says it wants this?
-# export PGDATA="$HOME/homebrew/var/postgres"
 
-# make Postgres not a huge PITA to start/stop
-# alias pgup="pg_ctl -D $PG_DATA_DIR -l $PG_DATA_DIR/server.log start"
-# alias pgdown="pg_ctl -D $PG_DATA_DIR stop"
 
 
 # HMDA ========
 
 export EDITS_DEMO_MODE=true
 export HMDA_IS_DEMO=true
-
-# Set up hmda-platform's connection to postgres, cassandra, and zookeeper
-# export CASSANDRA_CLUSTER_HOSTS=192.168.99.100
-# export CASSANDRA_CLUSTER_PORT=9042
-# export ZOOKEEPER_HOST=192.168.99.100
-# export ZOOKEEPER_PORT=2181
 
 
 # ALIASES =====================================================================
