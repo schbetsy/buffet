@@ -47,6 +47,7 @@ PROMPT_COLOR_GIT_DIRTY=${PROMPT_COLOR_GIT_DIRTY-"$red"}
 PROMPT_COLOR_JOBS_COUNT=${PROMPT_COLOR_JOBS_COUNT-"$yellow"}
 PROMPT_COLOR_PAIR=${PROMPT_COLOR_PAIR-"$default"}
 PROMPT_COLOR_REMOTE=${PROMPT_COLOR_REMOTE-"$magenta"}
+PROMPT_COLOR_VIRTUALENV=${PROMPT_COLOR_VIRTUALENV-"$yellow"}
 
 
 
@@ -142,6 +143,14 @@ _remote() {
   fi
 }
 
+# display current python virtualenv
+_py_virtualenv() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    local pve=`basename $VIRTUAL_ENV`
+    echo "$(_color "$PROMPT_COLOR_VIRTUALENV" "($pve)") "
+  fi
+}
+
 # change prompt arrow color based on exit status of last command
 _exit_flag() {
   local prompt_color
@@ -162,7 +171,7 @@ _exit_flag() {
 # combine the above functions into a pretty and informative prompt
 _prompt() {
   local last_exit_code="$?"
-  PS1="\n$(_remote)$(_directory)$(_buffet_git_status)$(_pair_status)$(_jobs_count)$(_dirs_count)\n$(_exit_flag "$last_exit_code")"
+  PS1="\n$(_remote)$(_py_virtualenv)$(_directory)$(_buffet_git_status)$(_pair_status)$(_jobs_count)$(_dirs_count)\n$(_exit_flag "$last_exit_code")"
 }
 
 PROMPT_COMMAND='_prompt'
