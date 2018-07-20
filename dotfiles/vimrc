@@ -50,38 +50,8 @@ Plug 'python-mode/python-mode', { 'branch': 'develop' }
                                   "    to replace manual vim setup
 
 call plug#end() " Plugins become visible to Vim after this call.
-
 " get the latest vim-plug with :PlugUpgrade
 
-" Color Scheme ===
-
-colo seoul256
-
-" ACK =============
-
-" Search from current directory using <leader>a
-let g:ackprg = 'ag --vimgrep --smart-case'
-cnoreabbrev ag Ack!
-cnoreabbrev Ack Ack!
-nnoremap <leader>a :Ack!<Space>
-
-" FZF =============
-
-" Fuzzy-find files in current directory with <leader>f
-nnoremap <leader>f :call fzf#run({
-      \   'sink': 'e'
-      \ })<CR>
-
-" NERDTREE ========
-
-map <leader>nt :NERDTreeToggle<CR> " open/close NERDtree
-map <leader>nf :NERDTreeFind<CR>   " open at the current file
-
-let g:NERDTreeWinSize=25   " constrain the default width
-let g:NERDTreeShowHidden=1 " show hidden files
-
-" don't display compiled or otherwise useless files
-let g:NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.hi$', '\.o$', '\~$']
 
 
 " INPUT =======================================================================
@@ -176,6 +146,38 @@ nnoremap *  *zz
 nnoremap #  #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
+
+
+
+" CONFIGURE PLUGINS ===========================================================
+
+" Color Scheme ===
+
+colo seoul256
+
+" ACK =============
+
+" Search from current directory using <leader>a
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack!
+cnoreabbrev Ack Ack!
+nnoremap <leader>a :Ack!<Space>
+
+" FZF =============
+
+" Fuzzy-find files in current directory with <leader>f
+nnoremap <leader>f :call fzf#run({ 'sink': 'e' })<CR>
+
+" NERDTREE ========
+
+map <leader>nt :NERDTreeToggle<CR> " open/close NERDtree
+map <leader>nf :NERDTreeFind<CR>   " open at the current file
+
+let g:NERDTreeWinSize=25   " constrain the default width
+let g:NERDTreeShowHidden=1 " show hidden files
+
+" don't display compiled or otherwise useless files
+let g:NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.hi$', '\.o$', '\~$']
 
 
 
