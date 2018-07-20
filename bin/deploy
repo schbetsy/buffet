@@ -28,31 +28,6 @@ mkdir -p "$vim_dir/backup"
 mkdir -p "$vim_dir/swp"
 mkdir -p "$vim_dir/undo"
 
-# install vundle to ease installing Vim plugins
-vundle_dir="$vim_dir/bundle"
-vundle_path="$vundle_dir/Vundle.vim"
-vundle_repo='https://github.com/VundleVim/Vundle.vim.git'
-
-mkdir -p "$vundle_dir"
-if [ ! -d "$vundle_path" ]; then
-  echo '-- installing Vim plugins...'
-  git clone "$vundle_repo" "$vundle_path"
-  vim +PluginInstall +qall
-fi
-
-# TODO: these take a long time. maybe it'd be better to only install a core set?
-if hash apm 2>/dev/null; then
-  echo '-- install Atom plugins...'
-  apm install linter merge-conflicts script vim-mode-plus vim-surround atom-pair \
-    language-gherkin language-haml Sublime-Style-Column-Selection atom-typescript autocomplete-ruby \
-    highlight-selected language-rspec linter linter-js-yaml linter-rubocop markdown-scroll-sync \
-    merge-conflicts rails-rspec rails-transporter ruby-test toggle-quotes vim-mode-plus \
-    Sublime-Style-Column-Selection atom-beautify atom-bootstrap3 atom-jshint atom-material-syntax \
-    atom-material-ui autocomplete-ruby file-icons highlight-selected language-ampscript \
-    language-crontab language-gherkin linter linter-erb linter-htmlhint linter-js-yaml \
-    linter-jscs linter-rubocop linter-ruby merge-conflicts pigments pretty-json rails-rspec rspec \
-    toggle-packages atomic-emacs
-fi
 
 # CLOSE UP SHOP ===============================================================
 

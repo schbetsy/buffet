@@ -165,9 +165,6 @@ alias server='ruby -run -e httpd . -p 9090'
 # attach to the tmux session or create a new session named after the user
 alias tmuxup='tmux attach-session -t "$(whoami)" || tmux new-session -s "$(whoami)"'
 
-# update Vim plugins
-alias vundle='vim +PluginInstall! +qall'
-
 alias path='echo $PATH | tr -s ":" "\n"'
 alias read_env='export $(grep -v "^#" .env | xargs -0)'
 

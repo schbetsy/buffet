@@ -32,20 +32,9 @@ endfunction
 
 " PLUGINS =====================================================================
 
-" required to begin Vundle
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-" source Vim plugins we've standardized around
-call SourceIfExists($HOME . '/.vundle')
 
-" source local additional plugins
-call SourceIfExists($HOME . '/.vundle.local')
 
-" required to end Vundle
-call vundle#end()
-filetype plugin indent on
 
 
 
@@ -87,7 +76,7 @@ nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
 
 " generate ctags from within Vim
-command Ctags !ctags -R
+"command Ctags !ctags -R
 
 
 
@@ -155,14 +144,6 @@ let g:NERDTreeShowHidden=1 " show hidden files
 
 " don't display compiled or otherwise useless files
 let g:NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.hi$', '\.o$', '\~$']
-
-" hide certain files from Ctrl-P
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip              "standard system files
-set wildignore+=*/node_modules/*,*/bower_components/* "3rd-party javascript packages
-set wildignore+=*/vendor/*                            "3rd-party Rails gems
-
-" syntastic JS checker options
-let g:syntastic_javascript_checkers = ['jshint', 'jscs']
 
 " LOCAL OVERRIDE ==============================================================
 
