@@ -44,6 +44,7 @@ Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf'
 Plug 'vim-airline/vim-airline'    " informative vim status line
 Plug 'tpope/vim-surround'
+Plug 'majutsushi/tagbar'          " browse ctags
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
 "Plug 'tpope/vim-sensible'        " Consider adding this one someday
@@ -90,9 +91,6 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
-
-" generate ctags from within Vim
-"command Ctags !ctags -R
 
 
 
@@ -179,6 +177,12 @@ let g:NERDTreeShowHidden=1 " show hidden files
 " don't display compiled or otherwise useless files
 let g:NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.hi$', '\.o$', '\~$']
 
+" TAGBAR ==========
+
+" See bashrc for ctag generation. use tagpy or tags in command line.
+set tags=tags
+
+map <leader>t :TagbarToggle<CR>  "open/close Tagbar
 
 
 

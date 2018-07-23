@@ -41,6 +41,32 @@ npmnuke() {
   rm -rf node_modules && npm install
 }
 
+# Generate Ctags for this project that is in a virtualenv
+#   call from project root with: `tagpy virtualenvName`
+tagpy() {
+  VIRTUALENV_NAME=$1
+  if [ -z "$VIRTUALENV_NAME" ]
+  then
+    echo "Error: Include virtualenv name as argument."
+    echo "if this isn't a python project, use the basicTags function."
+  else
+    LIB_LOCATION="$HOME/.virtualenvs/$VIRTUALENV_NAME/" #lib/"
+    # borrowed from https://www.fusionbox.com/blog/detail/navigating-your-django-project-with-vim-and-ctags/590/
+    PYTHON_LOCATION=$(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))")
+    TAGS_COMMAND="ctags -R --fields=+l --languages=python --python-kinds=-iv ./ $LIB_LOCATION $PYTHON_LOCATION"
+    echo $TAGS_COMMAND
+    $TAGS_COMMAND
+  fi
+}
+
+tags(){
+  ctags -R
+}
+
+# TODO: Consider generating ctags automatically via git hooks
+#   https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+
+
 # VARIABLES ===================================================================
 # normalize the PATH stack
 export PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
