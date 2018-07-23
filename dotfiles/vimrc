@@ -32,20 +32,27 @@ endfunction
 
 " PLUGINS =====================================================================
 
-" required to begin Vundle
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Using vim-plug. Tutorial here: https://github.com/junegunn/vim-plug/wiki/tutorial
+" commands-> :PlugInstall, :PlugUpdate, :PlugClean
 
-" source Vim plugins we've standardized around
-call SourceIfExists($HOME . '/.vundle')
+call plug#begin('~/.vim/plugged') " where plugins live
 
-" source local additional plugins
-call SourceIfExists($HOME . '/.vundle.local')
+Plug 'junegunn/seoul256.vim'      " color scheme
+Plug 'tpope/vim-fugitive'         " git integration
+Plug 'scrooloose/nerdtree'
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf'
+Plug 'vim-airline/vim-airline'    " informative vim status line
+Plug 'tpope/vim-surround'
+Plug 'majutsushi/tagbar'          " browse ctags
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
-" required to end Vundle
-call vundle#end()
-filetype plugin indent on
+" Add code completion?
+"Plug 'tpope/vim-sensible'        " Consider adding this one someday
+                                  "    to replace manual vim setup
+
+call plug#end() " Plugins become visible to Vim after this call.
+" get the latest vim-plug with :PlugUpgrade
 
 
 
@@ -79,15 +86,13 @@ let mapleader=' '
 map <leader>cn :cnext<CR>     " next item in quickview
 map <leader>cp :cprevious<CR> " previous item in quickview
 map <leader>co :copen<CR>     " open quickview
+map <leader>cl :cclose<CR>    " close quickview
 
 " navigate split windows via ctrl-h/j/k/l
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
-
-" generate ctags from within Vim
-command Ctags !ctags -R
 
 
 
@@ -144,9 +149,27 @@ nnoremap g# g#zz
 
 
 
-" FILE BROWSING ===============================================================
+" CONFIGURE PLUGINS ===========================================================
 
-" NERDTree-specific settings
+" Color Scheme ===
+
+colo seoul256
+
+" ACK =============
+
+" Search from current directory using <leader>a
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack!
+cnoreabbrev Ack Ack!
+nnoremap <leader>a :Ack!<Space>
+
+" FZF =============
+
+" Fuzzy-find files in current directory with <leader>f
+nnoremap <leader>f :call fzf#run({ 'sink': 'e' })<CR>
+
+" NERDTREE ========
+
 map <leader>nt :NERDTreeToggle<CR> " open/close NERDtree
 map <leader>nf :NERDTreeFind<CR>   " open at the current file
 
@@ -156,13 +179,14 @@ let g:NERDTreeShowHidden=1 " show hidden files
 " don't display compiled or otherwise useless files
 let g:NERDTreeIgnore = ['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.hi$', '\.o$', '\~$']
 
-" hide certain files from Ctrl-P
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip              "standard system files
-set wildignore+=*/node_modules/*,*/bower_components/* "3rd-party javascript packages
-set wildignore+=*/vendor/*                            "3rd-party Rails gems
+" TAGBAR ==========
 
-" syntastic JS checker options
-let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+" See bashrc for ctag generation. use tagpy or tags in command line.
+set tags=tags
+
+map <leader>t :TagbarToggle<CR>  "open/close Tagbar
+
+
 
 " LOCAL OVERRIDE ==============================================================
 

@@ -41,6 +41,32 @@ npmnuke() {
   rm -rf node_modules && npm install
 }
 
+# Generate Ctags for this project that is in a virtualenv
+#   call from project root with: `tagpy virtualenvName`
+tagpy() {
+  VIRTUALENV_NAME=$1
+  if [ -z "$VIRTUALENV_NAME" ]
+  then
+    echo "Error: Include virtualenv name as argument."
+    echo "if this isn't a python project, use the basicTags function."
+  else
+    LIB_LOCATION="$HOME/.virtualenvs/$VIRTUALENV_NAME/" #lib/"
+    # borrowed from https://www.fusionbox.com/blog/detail/navigating-your-django-project-with-vim-and-ctags/590/
+    PYTHON_LOCATION=$(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))")
+    TAGS_COMMAND="ctags -R --fields=+l --languages=python --python-kinds=-iv ./ $LIB_LOCATION $PYTHON_LOCATION"
+    echo $TAGS_COMMAND
+    $TAGS_COMMAND
+  fi
+}
+
+tags(){
+  ctags -R
+}
+
+# TODO: Consider generating ctags automatically via git hooks
+#   https://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+
+
 # VARIABLES ===================================================================
 # normalize the PATH stack
 export PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
@@ -74,15 +100,43 @@ fi
 
 # ENVIRONMENT VARIABLES =======================================================
 
-# set vim as the default editor
+# CFPB paths (from github.com/cfpb/dotfiles `.exports`)
+export PATH="$HOME/homebrew/bin:$PATH:$HOME/homebrew/share/npm/bin"
+
+# set the default editor to Vim
 export EDITOR=vim
 export VISUAL=vim
 
-# not used by any program, but nice to reference
-export PG_DATA_DIR='/usr/local/var/postgres'
-
 # ignore common large directories in grep
 export GREP_OPTIONS='--exclude-dir=.svn --exclude-dir=.git --exclude-dir=tmp'
+
+# set colors for LS; make directory names easier to read
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
+# don't save duplicates in bash history
+export HISTCONTROL=ignoredups:erasedups
+
+# if docker-machine has started, export its variables
+eval $(docker-machine env)
+
+export FZF_DEFAULT_COMMAND='
+  (git ls-files ||
+   find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
+      sed s/^..//) 2> /dev/null'
+
+
+# CF.gov project settings =========
+
+# activate autoenv on startup, for managing environment vars
+source "$HOME/homebrew/opt/autoenv/activate.sh"
+
+
+
+# HMDA ========
+
+export EDITS_DEMO_MODE=true
+export HMDA_IS_DEMO=true
+
 
 # ALIASES =====================================================================
 
@@ -103,6 +157,11 @@ alias be='bundle exec'
 alias v='vim'
 alias gr='grunt'
 alias r='rake'
+
+# Docker Toolbox aliases
+alias dk="docker"
+alias dcom="docker-compose"
+alias dm="docker-machine"
 
 # override common tools with useful arguments
 alias grep='grep --color'
@@ -131,21 +190,17 @@ alias gl='git pull'
 alias gup='git pull --rebase'
 alias gp='git push'
 
-# make Postgres not a huge PITA to start/stop
-alias pgup="pg_ctl -D $PG_DATA_DIR -l $PG_DATA_DIR/server.log start"
-alias pgdown="pg_ctl -D $PG_DATA_DIR stop"
-
 # run a server in the current directory
 alias server='ruby -run -e httpd . -p 9090'
 
 # attach to the tmux session or create a new session named after the user
 alias tmuxup='tmux attach-session -t "$(whoami)" || tmux new-session -s "$(whoami)"'
 
-# update Vim plugins
-alias vundle='vim +PluginInstall! +qall'
-
 alias path='echo $PATH | tr -s ":" "\n"'
 alias read_env='export $(grep -v "^#" .env | xargs -0)'
+
+# help for common sbt commands
+alias sbclean='sbt clean compile test:compile'
 
 # AUTO-COMPLETION =============================================================
 source_if_exists "$BUFFET_DIRECTORY/bin/brew-auto-complete"
