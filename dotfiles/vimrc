@@ -47,6 +47,7 @@ Plug 'tpope/vim-surround'
 Plug 'majutsushi/tagbar'          " browse ctags
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
+" Add code completion?
 "Plug 'tpope/vim-sensible'        " Consider adding this one someday
                                   "    to replace manual vim setup
 
