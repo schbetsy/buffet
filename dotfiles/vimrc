@@ -85,6 +85,7 @@ let mapleader=' '
 map <leader>cn :cnext<CR>     " next item in quickview
 map <leader>cp :cprevious<CR> " previous item in quickview
 map <leader>co :copen<CR>     " open quickview
+map <leader>cl :cclose<CR>    " close quickview
 
 " navigate split windows via ctrl-h/j/k/l
 nnoremap <C-J> <C-W>j
