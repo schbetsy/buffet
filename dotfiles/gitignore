@@ -19,3 +19,10 @@ Thumbs.db
 
 # JetBrains IDE project data
 .idea
+
+# ctags files
+tags
+
+# ag (search) ignores files specified in .hgignore
+#  Use this to ignore files I never want to search
+.hgignore
