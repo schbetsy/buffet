@@ -45,7 +45,7 @@ Plug 'junegunn/fzf'
 Plug 'vim-airline/vim-airline'    " informative vim status line
 Plug 'tpope/vim-surround'
 Plug 'majutsushi/tagbar'          " browse ctags
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'scrooloose/syntastic'
 
 " Add code completion?
 "Plug 'tpope/vim-sensible'        " Consider adding this one someday
