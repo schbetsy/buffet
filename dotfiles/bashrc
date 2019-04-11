@@ -171,11 +171,6 @@ alias v='vim'
 alias gr='grunt'
 alias r='rake'
 
-# Docker Toolbox aliases
-alias dk="docker"
-alias dcom="docker-compose"
-alias dm="docker-machine"
-
 # override common tools with useful arguments
 alias grep='grep --color'
 alias la='ls -lah'
