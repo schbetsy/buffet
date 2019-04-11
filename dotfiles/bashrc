@@ -74,37 +74,16 @@ export PATH='/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
 # Buffet bins
 prepend_to_path "$HOME/.buffet/bin"
 
-# Android SDK
-if [ -d "$HOME/Library/Android/sdk" ]; then
-  export ANDROID_HOME="$HOME/Library/Android/sdk"
-  prepend_to_path "$ANDROID_HOME/platform-tools"
-  prepend_to_path "$ANDROID_HOME/tools"
-fi
-
 # Node Version Manager
 if [ -d "$HOME/.nvm" ]; then
   export NVM_DIR="$HOME/.nvm"
   source_if_exists "$NVM_DIR/nvm.sh"
 fi
 
-# Ruby Version Manager
-if [ -d "$HOME/.rvm" ]; then
-  prepend_to_path "$HOME/.rvm/bin"
-  source_if_exists "$HOME/.rvm/scripts/rvm"
-fi
-
-# RBENV
-if hash rbenv 2>/dev/null; then
-  eval "$(rbenv init -)"
-fi
-
-# POSTGRES 10
-prepend_to_path "$HOME/homebrew/opt/postgresql@10/bin"
-
-# ENVIRONMENT VARIABLES =======================================================
-
 # CFPB paths (from github.com/cfpb/dotfiles `.exports`)
 export PATH="$HOME/homebrew/bin:$PATH:$HOME/homebrew/share/npm/bin"
+
+# ENVIRONMENT VARIABLES =======================================================
 
 # set the default editor to Vim
 export EDITOR=vim
