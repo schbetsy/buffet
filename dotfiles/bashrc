@@ -98,9 +98,6 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 # don't save duplicates in bash history
 export HISTCONTROL=ignoredups:erasedups
 
-# if docker-machine has started, export its variables
-eval $(docker-machine env)
-
 export FZF_DEFAULT_COMMAND='
   (git ls-files ||
    find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
