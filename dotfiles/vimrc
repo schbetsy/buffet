@@ -187,6 +187,10 @@ set tags=tags
 map <leader>t :TagbarToggle<CR>  "open/close Tagbar
 
 
+" Python Debugger ==========
+
+" insert python debugger line
+map <leader>pdb oimport pdb; pdb.set_trace()<ESC>
 
 " LOCAL OVERRIDE ==============================================================
 
