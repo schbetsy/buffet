@@ -98,6 +98,9 @@ if hash rbenv 2>/dev/null; then
   eval "$(rbenv init -)"
 fi
 
+# POSTGRES 10
+prepend_to_path "$HOME/homebrew/opt/postgresql@10/bin"
+
 # ENVIRONMENT VARIABLES =======================================================
 
 # CFPB paths (from github.com/cfpb/dotfiles `.exports`)
