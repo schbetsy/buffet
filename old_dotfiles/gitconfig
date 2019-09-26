@@ -62,6 +62,7 @@
   bra    = for-each-ref --sort=-committerdate --format='%(color:yellow)%(refname:short) %(color:bold green)%(committerdate:relative) %(color:blue)%(subject) %(color:magenta)%(authorname)%(color:reset)'
   df     = diff -w
   put    = push origin HEAD --set-upstream
+  please = push origin HEAD --set-upstream --force-with-lease
   s      = status --short
   sha    = "!if [ -x \"$(command -v xclip)\" ]; then git rev-parse HEAD | tr -d [:space:] | xclip; elif [ -x \"$(command -v pbcopy)\" ]; then git rev-parse HEAD | tr -d [:space:] | pbcopy; fi"
   st     = status
@@ -81,3 +82,6 @@
 
 [include]
   path = ~/.gitconfig.local
+[user]
+	email = elorton@gmail.com
+	name = Betsy Lorton

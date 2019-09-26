@@ -105,7 +105,7 @@ set nowrap       " don't wrap lines
 set laststatus=2 " show statusline at the bottom
 set showcmd      " show partial command input on bottom-right
 
-" show invisible charactes
+" show invisible characters
 set list
 set listchars=tab:⸘⸘,trail:⸘,extends:»,precedes:«
 

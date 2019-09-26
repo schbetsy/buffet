@@ -112,20 +112,18 @@ export PYENV_ROOT="$HOME/.pyenv"
 # pyenv-virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+eval "$(pyenv init -)"
+
+# initialize PyEnv-Virtualenv
+eval "$(pyenv virtualenv-init -)"
 
 # initialize PyEnv VirtualenvWrapper
-pyenv virtualenvwrapper_lazy
+# don't tho :// pyenv virtualenvwrapper
 
 # CF.gov project settings =========
 
 # POSTGRES 10
 prepend_to_path "$HOME/homebrew/opt/postgresql@10/bin"
-
-
-
 
 
 # ALIASES =====================================================================
