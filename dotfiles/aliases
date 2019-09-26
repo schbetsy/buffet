@@ -1,0 +1,19 @@
+
+alias ..='cd ..' # ':' is reserved in bash as equivalent to true
+alias ::='cd ../..'
+alias :::='cd ../../..'
+alias ::::='cd ../../../..'
+
+
+# shortcuts for the most commonly used tools
+alias v='vim'
+alias g='git'
+alias gap='git add -p'
+alias gst='git status'
+
+# override common tools with useful arguments
+alias grep='grep --color'
+alias la='ls -lah'
+alias ls='ls -FG'
+
+alias path='echo $PATH | tr -s ":" "\n"'
