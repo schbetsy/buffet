@@ -1,0 +1,99 @@
+" must be set first; prevents maintaining compatibility with Vi
+set nocompatible
+
+
+" PLUGINS =====================================================================
+
+" Using vim-plug. Tutorial here: https://github.com/junegunn/vim-plug/wiki/tutorial
+" commands-> :PlugInstall, :PlugUpdate, :PlugClean
+
+call plug#begin('~/.vim/plugged') " where plugins live
+
+Plug 'junegunn/seoul256.vim'      " color scheme
+Plug 'tpope/vim-fugitive'         " git integration
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf'
+Plug 'tpope/vim-surround'
+
+" Add code completion?
+"Plug 'tpope/vim-sensible'        " Consider adding this one someday
+                                  "    to replace manual vim setup
+
+call plug#end() " Plugins become visible to Vim after this call.
+" get the latest vim-plug with :PlugUpgrade
+
+
+" INPUT =======================================================================
+
+" make Vim more compatible with other filesystems
+set encoding=utf-8              " all opened files should be UTF-8
+
+" make Vim behave more like other editors
+set backspace=indent,eol,start  " enable backspacing through whitespace
+set virtualedit=all             " cursor can move past the end of the line
+set mouse=a                     " enable mouse reporting/highlighting/scrolling
+set scrolloff=4
+
+" exit insert mode by typing jj
+imap jj <ESC>
+
+
+" NAVIGATION ==================================================================
+
+" a leader key convenient in any keyboard layout
+let mapleader=' '
+
+" shortcuts for working with the quickview window
+map <leader>cn :cnext<CR>     " next item in quickview
+map <leader>cp :cprevious<CR> " previous item in quickview
+map <leader>co :copen<CR>     " open quickview
+map <leader>cl :cclose<CR>    " close quickview
+
+
+" VISUALS =====================================================================
+
+syntax on        " enable syntax highlighting
+set number       " show line number on left side
+set ruler        " show column/line # on bottom-right
+set nowrap       " don't wrap lines
+set showcmd      " show partial command input on bottom-right
+
+" show invisible characters
+set list
+set listchars=tab:⸘⸘,trail:⸘,extends:»,precedes:«
+
+" modify cursor depending on mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+
+" SEARCH ======================================================================
+
+set hlsearch   " highlight search results
+set incsearch  " enable incremental searching
+set ignorecase " searches are case insensitive...
+set smartcase  " unless they contain a capital letter
+
+
+" Python Debugger ==========
+
+" insert python debugger line
+map <leader>pdb oimport pdb; pdb.set_trace()<ESC>
+" CONFIGURE PLUGINS ===========================================================
+
+" Color Scheme ===
+
+colo seoul256
+
+" ACK =============
+
+" Search from current directory using <leader>a
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack!
+cnoreabbrev Ack Ack!
+nnoremap <leader>a :Ack!<Space>
+
+" FZF =============
+
+" Fuzzy-find files in current directory with <leader>f
+nnoremap <leader>f :call fzf#run({ 'sink': 'e' })<CR>
