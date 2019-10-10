@@ -14,6 +14,7 @@ directory where this repo lives.
 
 Next,
 ```sh
+cp dotfiles/bash_profile ~/.bash_profile
 cp dotfiles/bashrc_base ~/.bashrc
 cp dotfiles/vimrc_base ~/.vimrc
 ```
